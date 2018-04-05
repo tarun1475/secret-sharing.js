@@ -32,13 +32,13 @@ or
 
 The source code for this package is available on [Github](https://github.com/grempe/secret-sharing.js).
 
-## Server side
+### Server side
 
 To use it in a Node.js application (Requires OpenSSL support compiled into Node):
 
 	var secrets = require('secret-sharing.js');
 
-## Client side
+### Client side
 
 To use it in the browser with the global 'secrets' defined, include *secret-sharing.js*, *secrets.min.js* or *secrets.ob.js* in your HTML.
 
