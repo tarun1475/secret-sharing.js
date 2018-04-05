@@ -17,14 +17,15 @@
 		"grunt-eslint": "^20.1.0",
 		"jasmine": "^3.1.0",
 		"jasmine-core": "^3.1.0",
+		"jasmine-node": "^1.14.5",
 		"jquery": "^3.3.1",
 		"randomorg-js": "^1.0.0",
 		"sjcl": "^1.0.7",
 		"standard": "^11.0.1"
 	},
 	"scripts": {
-    "dev": "grunt watch",
-		"test": "./node_modules/.bin/standard \"secrets.js\" && jasmine-node spec/"
+		"dev": "grunt watch",
+		"test": "./node_modules/.bin/standard \"secret-sharing.js\" && node ./node_modules/jasmine-node/bin/jasmine-node spec/"
 	},
 	"repository": {
 		"type": "git",

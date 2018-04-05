@@ -5,5 +5,7 @@
 	"editor.detectIndentation": false,
 	"files.autoSave": "afterDelay",
 	"explorer.confirmDragAndDrop": false,
-	"extensions.ignoreRecommendations": false
+  "extensions.ignoreRecommendations": false,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true
 }
