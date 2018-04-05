@@ -24,6 +24,7 @@
 		"standard": "^11.0.1"
 	},
 	"scripts": {
+    "build": "grunt",
 		"dev": "grunt watch",
 		"test": "./node_modules/.bin/standard \"secret-sharing.js\" && node ./node_modules/jasmine-node/bin/jasmine-node spec/"
 	},
@@ -52,5 +53,5 @@
 		"url": "https://github.com/virtualcapitalofamerica/secret-sharing.js/issues"
 	},
 	"homepage": "https://www.virtualcapitalofamerica.com/open-source/",
-	"typings": "./secrets.js.d.ts"
+	"typings": "./secret-sharing.js.d.ts"
 }

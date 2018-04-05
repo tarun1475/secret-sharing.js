@@ -19,24 +19,30 @@ This module is an implementation of [Shamir's secret sharing scheme](http://en.w
 
 It can be used to split any "secret" (i.e. a password, text file, Bitcoin private key, anything) into _n_ number of "shares" (each the same size in bits as the original secret), requiring that exactly any number _t_ ("threshold") of them be present to reconstruct the original secret.
 
-This is a fork of the original excellent code created by `amper5and` on Github. The [original secrets.js can be found there](https://github.com/amper5and/secrets.js/).
+This is a fork of the original excellent code created by `amper5and` on Github. The [original secret-sharing.js can be found there](https://github.com/amper5and/secret-sharing.js/).
 
 ## Installation and usage
-This fork of secrets.js is available from [bower.io](http://bower.io/search/?q=secrets.js-grempe) and [www.npmjs.com](https://www.npmjs.com/package/secrets.js-grempe). Install using
+This fork of secret-sharing.js is available from [bower.io](http://bower.io/search/?q=secret-sharing.js) and [www.npmjs.com](https://www.npmjs.com/package/secret-sharing.js). Install using
 
-	npm install secrets.js-grempe
+	npm install secret-sharing.js
 
 or
 
-	bower install secrets.js-grempe
+	bower install secret-sharing.js
 
-The source code for this package is available on [Github](https://github.com/grempe/secrets.js).
+The source code for this package is available on [Github](https://github.com/grempe/secret-sharing.js).
+
+## Server side
 
 To use it in a Node.js application (Requires OpenSSL support compiled into Node):
 
-	var secrets = require('secrets.js');
+	var secrets = require('secret-sharing.js');
 
-To use it in the browser with the global 'secrets' defined, include *secrets.js* or *secrets.min.js* in your HTML.
+## Web side
+
+First you need a library called [sjcl](https://github.com/bitwiseshiftleft/sjcl), you can download latest version or use [rawgit](https://rawgit.com) to get a CDN version linking to [sjcl file](https://github.com/bitwiseshiftleft/sjcl/blob/master/sjcl.js)
+
+After sjcl declaration,to use it in the browser with the global 'secrets' defined, include *secret-sharing.js*, *secrets.min.js* or *secrets.ob.js* in your HTML.
 
 	<script src="secrets.min.js"></script>
 
@@ -147,16 +153,16 @@ Set the number of bits to use for finite field arithmetic.
 * `bits`: Number, optional, default `8`: An integer between 3 and 20. The number of bits to use for the Galois field.
 * `rngType`: String, optional: A string that has one of the values `["nodeCryptoRandomBytes", "browserCryptoGetRandomValues", "browserSJCLRandom"]`. Setting this will try to override the RNG that would be selected normally based on feature detection. This is probably most useful for testing or for choosing the `browserSJCLRandom` generator which is a good fallback for browsers that don't support crypto.getRandomValues(). Warning: You can specify a RNG that won't actually *work* in your environment.
 
-Internally, secrets.js uses finite field arithmetic in binary Galois Fields of size 2^bits. Multiplication is implemented by the means of log and exponential tables. Before any arithmetic is performed, the log and exp tables are pre-computed. Each table contains 2^bits entries.
+Internally, secret-sharing.js uses finite field arithmetic in binary Galois Fields of size 2^bits. Multiplication is implemented by the means of log and exponential tables. Before any arithmetic is performed, the log and exp tables are pre-computed. Each table contains 2^bits entries.
 
-`bits` is the limiting factor on `numShares` and `threshold`. The maximum number of shares possible for a particular `bits` is (2^bits)-1 (the zeroth share cannot be used as it is the `secret` by definition.). By default, secrets.js uses 8 bits, for a total 2^8-1 = 255 possible number of shares. To compute more shares, a larger field must be used. To compute the number of bits you will need for your `numShares` or `threshold`, compute the log-base2 of (`numShares`+1) and round up, i.e. in JavaScript: `Math.ceil(Math.log(numShares+1)/Math.LN2)`. You can examine the current calculated `maxShares` value by calling `secrets.getConfig()` and increase the bits accordingly for the number of shares you need to generate.
+`bits` is the limiting factor on `numShares` and `threshold`. The maximum number of shares possible for a particular `bits` is (2^bits)-1 (the zeroth share cannot be used as it is the `secret` by definition.). By default, secret-sharing.js uses 8 bits, for a total 2^8-1 = 255 possible number of shares. To compute more shares, a larger field must be used. To compute the number of bits you will need for your `numShares` or `threshold`, compute the log-base2 of (`numShares`+1) and round up, i.e. in JavaScript: `Math.ceil(Math.log(numShares+1)/Math.LN2)`. You can examine the current calculated `maxShares` value by calling `secrets.getConfig()` and increase the bits accordingly for the number of shares you need to generate.
 
 Note:
 
 * You can call `secrets.init()` anytime to reset *all* internal state and re-initialize.
 * `secrets.init()` does NOT need to be called if you plan on using the default of 8 bits. It is automatically called on loading the library.
 * The size of the exp and log tables depends on `bits` (each has 2^bits entries). Therefore, using a large number of bits will cause a slightly longer delay to compute the tables.
-* The _theoretical_ maximum number of bits is 31, as JavaScript performs bitwise operations on 31-bit numbers. A limit of 20 bits has been hard-coded into secrets.js, which can produce 1,048,575 shares. secrets.js has not been tested with this many shares, and it is not advisable to go this high, as it may be too slow to be of any practical use.
+* The _theoretical_ maximum number of bits is 31, as JavaScript performs bitwise operations on 31-bit numbers. A limit of 20 bits has been hard-coded into secret-sharing.js, which can produce 1,048,575 shares. secret-sharing.js has not been tested with this many shares, and it is not advisable to go this high, as it may be too slow to be of any practical use.
 * The Galois Field may be re-initialized to a new setting when `secrets.newShare()` or `secrets.combine()` are called with shares that are from a different Galois Field than the currently initialized one. For this reason, use `secrets.getConfig()` to check what the current `bits` setting is.
 * Calling `secrets.init()` will also attempt to seed the SJCL RNG if appropriate.
 
@@ -177,7 +183,7 @@ Returns an Object with the extracted parts of a public share string passed as an
 #### secrets.setRNG( function(bits){} | rngType )
 Set the pseudo-random number generator used to compute shares.
 
-secrets.js uses a PRNG in the `secrets.share()` and `secrets.random()` functions. By default, it tries to use a cryptographically strong PRNG. In Node.js this is `crypto.randomBytes()`. In browsers that support it, it is `crypto.getRandomValues()` (using typed arrays, which must be supported too). If neither of these are available, and if the `sjcl` library has been loaded it will be used. If it is not loaded an Error will be thrown.
+secret-sharing.js uses a PRNG in the `secrets.share()` and `secrets.random()` functions. By default, it tries to use a cryptographically strong PRNG. In Node.js this is `crypto.randomBytes()`. In browsers that support it, it is `crypto.getRandomValues()` (using typed arrays, which must be supported too). If neither of these are available, and if the `sjcl` library has been loaded it will be used. If it is not loaded an Error will be thrown.
 
 To supply your own PRNG, use `secrets.setRNG()`. It expects a Function of the form `function(bits){}`. It should compute a random integer between 1 and 2^bits-1. The output must be a String of length `bits` containing random 1's and 0's (cannot be ALL 0's). When `secrets.setRNG()` is called, it tries to check the PRNG to make sure it complies with some of these demands, but obviously it's not possible to run through all possible outputs. So make sure that it works correctly.
 
@@ -214,7 +220,7 @@ Each share is a string in the format `<bits><id><value>`. Each part of the strin
 You can extract these attributes from a share in your possession with the `secrets.extractShareComponents(share)` function which will return an Object with these attributes. You may use these values, for example, to call `secrets.init()` with the proper bits setting for shares you want to combine.
 
 ## Note on Security
-Shamir's secret sharing scheme is "information-theoretically secure" and "perfectly secure" in that less than the requisite number of shares provide no information about the secret (i.e. knowing less than the requisite number of shares is the same as knowing none of the shares). However, because the size of each share is the same as the size of the secret (when using binary Galois fields, as secrets.js does), in practice it does leak _some_ information, namely the _size_ of the secret. Therefore, if you will be using secrets.js to share _short_ password strings (which can be brute-forced much more easily than longer ones), it would be wise to zero-pad them so that the shares do not leak information about the size of the secret. With this in mind, secrets.js will zero-pad in multiples of 128 bits by default which slightly increases the share size for small secrets in the name of added security. You can increase or decrease this padding manually by passing the `padLength` argument to `secrets.share()`.
+Shamir's secret sharing scheme is "information-theoretically secure" and "perfectly secure" in that less than the requisite number of shares provide no information about the secret (i.e. knowing less than the requisite number of shares is the same as knowing none of the shares). However, because the size of each share is the same as the size of the secret (when using binary Galois fields, as secret-sharing.js does), in practice it does leak _some_ information, namely the _size_ of the secret. Therefore, if you will be using secret-sharing.js to share _short_ password strings (which can be brute-forced much more easily than longer ones), it would be wise to zero-pad them so that the shares do not leak information about the size of the secret. With this in mind, secret-sharing.js will zero-pad in multiples of 128 bits by default which slightly increases the share size for small secrets in the name of added security. You can increase or decrease this padding manually by passing the `padLength` argument to `secrets.share()`.
 
 When `secrets.share()` is called with a `padLength`, the `secret` is zero-padded so that it's length is a multiple of the padLength. The second example above can be modified to use 1024-bit zero-padding, producing longer shares:
 
@@ -256,4 +262,4 @@ Run unit testing and StandardJS
 * Investigate speed enhancements in polynomial evaluation and polynomial interpolation
 
 ## License
-secrets.js is released under the MIT License. See the `LICENSE` file.
+secret-sharing.js is released under the MIT License. See the `LICENSE` file.

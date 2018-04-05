@@ -58,7 +58,7 @@ size     exec  file                        contents
 1061             LICENSE                   2baf40ac753a4f17c5f447f923f63aee1024fa1799f77393b91b9adeb2b648d7
 1165             package.json              c5e1bb0a6a88b08f01cabbbe8b5445f6407bd82f8140bb89e165b02b514d1bcb
 23354            README.md                 554cbd122a4806e8458f908f431344d4a382190c65b70d3bc3ecfa9cefa23aed
-37027            secrets.js                2eb0a2409c85d315eb06ed09af6607697fdb16df4807c5bf67a515c3f5e71b61
+37027            secret-sharing.js                2eb0a2409c85d315eb06ed09af6607697fdb16df4807c5bf67a515c3f5e71b61
 10321            secrets.min.js            18a3952a6f0cf036f27cca7fab827165e2e99c3fd5cd87b77d6c50a9a7f1284f
                  spec/                                                                                     
 4744     x         SecretsPrivateSpec.js   3bbe3e4e6c6b5fadaa84ae40213c695df309ce131c658a1984ef30fd854bdf6d

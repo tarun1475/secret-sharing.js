@@ -1,5 +1,5 @@
 var http = require('http');
-var secrets = require('../secrets.js');
+var secrets = require('../secret-sharing.js');
 
 // Usage:
 //    cd examples

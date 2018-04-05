@@ -23,7 +23,7 @@
 	* Packaging cleanup and ready for 1.0.0 release on Bower and NPM.
 	* [Enhancement] Now supports the Javascript Universal Module Definition [UMDJS](https://github.com/umdjs/umd) for loading this module in the Browser with a `secrets` global, using an AMD Module loader like require.js, or in Node.js apps.
 	* Refactor getRNG() to no longer have embedded `require` now that crypto is included on module load with the UMDJS change.
-	* Updated README.md with info about this fork of secrets.js.
+	* Updated README.md with info about this fork of secret-sharing.js.
 	* Added some simple examples of usage to the examples folder.
 
 * 0.2.0

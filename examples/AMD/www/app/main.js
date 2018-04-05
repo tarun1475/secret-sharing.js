@@ -8,7 +8,7 @@ define(function (require) {
     // full IDs, like:
     var print = require('print');
 
-    // Load secrets.js
+    // Load secret-sharing.js
     var secrets = require('../../../../secrets');
 
     print(messages.getHello());

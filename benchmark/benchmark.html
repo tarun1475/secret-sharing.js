@@ -1,35 +1,41 @@
 <html>
-  <head>
-    <title>benchmark</title>
-  </head>
-  <body>
 
-    <script src="../node_modules/benchmark/benchmark.js"></script>
-    <script src="../secrets.js"></script>
+<head>
+  <title>benchmark</title>
+</head>
 
-    <script charset="utf-8">
-      var suite = new Benchmark.Suite;
+<body>
+  <script src="../node_modules/lodash/lodash.js"></script>
+  <script src="../node_modules/platform/platform.js"></script>
+  <script src="../node_modules/benchmark/benchmark.js"></script>
 
-      suite.add('share and combine', function() {
-        var key, shares, comb, newShare;
-        key = secrets.random(512);
-        shares = secrets.share(key, 10, 5);
-        comb = secrets.combine( shares );
-        newShare = secrets.newShare(8, shares);
-        comb = secrets.combine( shares.slice(1,5).concat(newShare) );
-      })
-      // .add('newPadLeft()', function() {
-      //   secrets._newPadLeft(padding, 256);
-      // })
+  <script src="https://cdn.rawgit.com/bitwiseshiftleft/sjcl/4fc74ff9/sjcl.js"></script>
+  <script src="../build/secret-sharing.js"></script>
+
+  <script charset="utf-8">
+    var suite = new Benchmark.Suite;
+
+    suite.add('sharecombine', function () {
+      var key= secrets.random(512); 
+      var shares=secrets.share(key, 10, 5);
+      var comb= secrets.combine(shares); 
+      var newShare= secrets.newShare(8, shares)
+    })
+      /* .add('newPadLeft()', function () {
+        secrets._newPadLeft(padding, 256);
+      }) */
       // add listeners
-      .on('cycle', function(event) {
+      .on('cycle', function (event) {
         console.log(String(event.target));
       })
-      .on('complete', function() {
-        console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+      .on('complete', function () {
+        var tes = this.filter('fastest');
+        debugger;
+        console.log('Fastest is ' + this.filter('fastest').map('name'));
       })
       // run async
-      .run({ 'async': false });
-    </script>
-  </body>
+      .run({ 'async': true });
+  </script>
+</body>
+
 </html>
