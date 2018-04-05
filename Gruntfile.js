@@ -9,11 +9,11 @@ module.exports = function (grunt) {
           '<%= grunt.template.today("yyyy-mm-dd") %> */\n',
       },
       SecretSharingDevJS: {
-        src: './secret-sharing.js',
+        src: ['./node_modules/sjcl/sjcl.js', './secret-sharing.js'],
         dest: './dev-build/secret-sharing.js'
       },
       SecretSharingProductionJS: {
-        src: './secret-sharing.js',
+        src: ['./node_modules/sjcl/sjcl.js','./secret-sharing.js'],
         dest: './build/secret-sharing.js'
       }
     },
@@ -39,12 +39,12 @@ module.exports = function (grunt) {
         banner: '// You can\'t debug this library.\n',
         //debugProtection: true,
         compact: true,
-        deadCodeInjection: true,
-        deadCodeInjectionThreshold: 0.2,
+        deadCodeInjection: false,
+        deadCodeInjectionThreshold: 0.1,
         mangle: true,
         unicodeEscapeSequence: false,
         selfDefending: false,
-        stringArrayEncoding: true,
+        stringArrayEncoding: false,
       },
       SecretSharingProductionObfuscateJS: {
         options: {},
