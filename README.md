@@ -1,23 +1,46 @@
-secrets.js
-==========
+# secret-sharing.js
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) 
 
-- [What is it?](#what-is-it)
-- [Examples](#examples)
+## Table of contents 
+- [Shamir Secret Sharing Scheme](#shamit-secret-sharing-scheme)
 - [Installation and usage](#installation-and-usage)
+- [Examples](#examples)
 - [API](#api)
 - [Share format](#share-format)
 - [Note on security](#note-on-security)
-- [License](#license)
 - [Development and Testing](#development-and-testing)
-- [Changelog](#changelog)
 - [Possible future enhancements](#possible-future-enhancements)
+- [License](#license)
 
-## What is it?
-secrets.js is an implementation of [Shamir's threshold secret sharing scheme](http://en.wikipedia.org/wiki/Shamir's_Secret_Sharing) in JavaScript, for Node.js and browsers with both Global variable and AMD module loading support.
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
+## Shamir Secret Sharing Scheme 
+This module is an implementation of [Shamir's secret sharing scheme](http://en.wikipedia.org/wiki/Shamir's_Secret_Sharing) in JavaScript, for Node.js and browsers with both Global variable and AMD module loading support.
 
 It can be used to split any "secret" (i.e. a password, text file, Bitcoin private key, anything) into _n_ number of "shares" (each the same size in bits as the original secret), requiring that exactly any number _t_ ("threshold") of them be present to reconstruct the original secret.
 
 This is a fork of the original excellent code created by `amper5and` on Github. The [original secrets.js can be found there](https://github.com/amper5and/secrets.js/).
+
+## Installation and usage
+This fork of secrets.js is available from [bower.io](http://bower.io/search/?q=secrets.js-grempe) and [www.npmjs.com](https://www.npmjs.com/package/secrets.js-grempe). Install using
+
+	npm install secrets.js-grempe
+
+or
+
+	bower install secrets.js-grempe
+
+The source code for this package is available on [Github](https://github.com/grempe/secrets.js).
+
+To use it in a Node.js application (Requires OpenSSL support compiled into Node):
+
+	var secrets = require('secrets.js');
+
+To use it in the browser with the global 'secrets' defined, include *secrets.js* or *secrets.min.js* in your HTML.
+
+	<script src="secrets.min.js"></script>
+
+You can also use it in the browser with an AMD module loading tool like [require.js](http://www.requirejs.org/). See the AMD loading example in the `examples` dir.
 
 ## Examples:
 
@@ -75,27 +98,6 @@ Divide a password containing a mix of numbers, letters, and other characters, re
 	console.log( comb === pw  ); // => true
 
 There are some additional examples of simple usage in the browser, Node.js, and AMD loading (require.js) in the `examples` folder.
-
-## Installation and usage
-This fork of secrets.js is available from [bower.io](http://bower.io/search/?q=secrets.js-grempe) and [www.npmjs.com](https://www.npmjs.com/package/secrets.js-grempe). Install using
-
-	npm install secrets.js-grempe
-
-or
-
-	bower install secrets.js-grempe
-
-The source code for this package is available on [Github](https://github.com/grempe/secrets.js).
-
-To use it in a Node.js application (Requires OpenSSL support compiled into Node):
-
-	var secrets = require('secrets.js');
-
-To use it in the browser with the global 'secrets' defined, include *secrets.js* or *secrets.min.js* in your HTML.
-
-	<script src="secrets.min.js"></script>
-
-You can also use it in the browser with an AMD module loading tool like [require.js](http://www.requirejs.org/). See the AMD loading example in the `examples` dir.
 
 ## API
 
@@ -232,97 +234,18 @@ When `secrets.share()` is called with a `padLength`, the `secret` is zero-padded
 
 	console.log( comb === pw  ); // => true
 
-
-## License
-secrets.js is released under the MIT License. See the `LICENSE` file.
-
 ## Development and Testing
 
 Install [Node.js](http://nodejs.org/) first using an [Installer](http://nodejs.org/download/) or a [package manager for your OS](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager).
 
 Install all development dependencies locally:
 
-	// GLOBAL
-	npm install -g bower
-	npm install -g grunt-cli
-	npm install -g uglify-js
-	npm install -g jasmine-node@2.0.0
-
-	// LOCAL
-	cd secrets.js/
 	npm install
-	bower install
+	npm run dev
 
-### Continuous Development
+Run unit testing and StandardJS
 
-You can run 'grunt watch' to start watching all JavaScript files and run the testing and minification Grunt tasks on every save to a file.
-
-### Minifying
-
-The minified version of the `secrets.js` can be found in `secrets.min.js`. This file was generated using the [UglifyJS2](https://github.com/mishoo/UglifyJS2) tool and was run with `grunt`:
-
-	grunt uglify
-
-### Browser Testing with Jasmine
-
-There is a [Jasmine](https://jasmine.github.io/) test suite that exercises the entire `secrets` module that can be run
-by simply opening the `SpecRunner.html` file in your browser. You can run the specs against the minified version of secrets.js by opening `SpecRunnerMinified.html`.
-
-	(On OS X)
-	open SpecRunner.html
-	open SpecRunnerMinified.html
-
-### Node.js Testing with Jasmine
-
-You can also run the Jasmine test suite within a Node.js instance (assumes proper install of jasmine-node as shown above).
-
-	grunt jasmine_nodejs
-
-OR
-
-	jasmine-node spec/
-
-## Changelog
-
-* 1.2.0
-	* Added `secrets.seedRNG()` function to allow seeding the SJCL RNG instantly via Browser or Node.js RNG's or with entropy from an external server.
-
-* 1.1.0
-	* Added `grunt watch` task to auto-run tests and minification on every JavaScript file save.
-	* Minified file now contains name, version and author comments automatically.
-	* Configured basic `grunt` tasks for minification, Node.js testing with Jasmine, jshint, eslint. Removed Karma test runner and manual minification and testing steps. Just run `grunt`.
-	* [Bugfix] calling `secrets.init()` now actually resets *all* internal state back to the default settings. Previously `init()` only reset some internal values. `init()` now calls a new private function `reset()` to accomplish this.
-	* [Enhancement] If the [Stanford Javascript Crypto Libarary (SJCL)](https://bitwiseshiftleft.github.io/sjcl/) is loaded in the browser it can be used as a fallback, or explicitly selected, CSPRNG for those browsers that don't support `crypto.getRandomValues()`. It uses the Fortuna RNG and collects additional entropy from mouse movements continually. The downside is that it requires mouse movements initially before `secrets.random()` can be called.  `secrets.random()` will throw an Error if called when SJCL is not fully seeded. Currently set to use the maximum SJCL 'paranoia' level of 10. An enhancement to this might be to call out to retrieve one or more external sources of entropy (and mixing them together) to pre-seed the RNG when the library is loaded.
-	* [Enhancement] You can now pass a string to `init()` or `setRNG()` which forces loading of a specific RNG (whether it will work or not in your current env!)
-	* Re-factored how `getRNG()` works internally. Now it returns small focused functions, not a giant function with detection conditionals. If SJCL is loaded the RNG tests are skipped since they would always initially fail due to the entropy pool being initally empty. This should be OK for this 'trusted' RNG.
-
-
-* 1.0.0
-	* Packaging cleanup and ready for 1.0.0 release on Bower and NPM.
-	* [Enhancement] Now supports the Javascript Universal Module Definition [UMDJS](https://github.com/umdjs/umd) for loading this module in the Browser with a `secrets` global, using an AMD Module loader like require.js, or in Node.js apps.
-	* Refactor getRNG() to no longer have embedded `require` now that crypto is included on module load with the UMDJS change.
-	* Updated README.md with info about this fork of secrets.js.
-	* Added some simple examples of usage to the examples folder.
-
-* 0.2.0
-	* [Enhancement] Extend the output of getConfig() to include the `radix` and `maxShares` properties.
-	* [Security] Zero-pad all secrets in multiples of 128 bits (instead of 0) by default.
-	* [Performance] Massive (100x) speed optimization to padLeft() private function (the second most frequently called block of code internally).
-	* [Testing] Added a full jasmine test suite and Karma test runner. Karma runs will also generate code coverage HTML reports. Code coverage is currently >90%.
-	* [Testing] Expose all private functions as Underscore (_) prefixed functions to allow direct unit testing.
-	* [Security] Removed Math.random fallback random number generator. Should always fail safe, even if it means not working. `secrets.getConfig().unsafePRNG` will always result in undefined now as it is no longer ever set.
-	* Refactored away need to know anything about `global` var.
-	* [Testing] jslint.com, jshint.com, and eslint CLI warnings for code and style now clean.
-	* Beautify code.
-* 0.1.8: bugfix release
-* 0.1.7: added config.unsafePRNG reset when supplying a new PRNG
-* 0.1.6:
-	* Removed JSBN dependency, support for arbitrary radices, and the `convertBase()` function, with attendant 50% file size reduction.
-	* Fixed bug where leading zeros were dropped.
-	* Renamed string conversion functions.
-* 0.1.5: getConfig() returns information about PRNG
-* 0.1.4: new share format
-
+	npm run test
 
 ## Possible future enhancements
 * Consider changing the share format to output Base 58 strings which are more human friendly. (Requires share format change)
@@ -331,3 +254,6 @@ OR
 * [Cheater-detection](http://h.web.umkc.edu/harnl/papers/J68.pdf)
 * [Dynamic threshold](http://www1.spms.ntu.edu.sg/~ctartary/Dynamic_Threshold_INSCRYPT2006.pdf)
 * Investigate speed enhancements in polynomial evaluation and polynomial interpolation
+
+## License
+secrets.js is released under the MIT License. See the `LICENSE` file.
