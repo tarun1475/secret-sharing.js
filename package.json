@@ -1,49 +1,55 @@
 {
-  "name": "secrets.js-grempe",
-  "version": "1.2.0",
-  "description": "Shamir's threshold secret sharing scheme for JavaScript.",
-  "main": "secrets.js",
-  "directories": {
-    "example": "examples"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "benchmark": "^1.0.0",
-    "grunt": "^0.4.5",
-    "grunt-check-modules": "^1.0.0",
-    "grunt-contrib-jshint": "^0.11.0",
-    "grunt-contrib-uglify": "^0.8.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-eslint": "^7.0.1",
-    "grunt-jasmine-nodejs": "^0.4.0",
-    "jasmine": "^2.2.1",
-    "jasmine-core": "^2.2.0",
-    "jquery": "^2.1.3",
-    "randomorg-js": "^1.0.0",
-    "sjcl": "^1.0.2"
-  },
-  "scripts": {
-    "test": "jasmine-node spec/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/grempe/secrets.js.git"
-  },
-  "keywords": [
-    "secret",
-    "sharing",
-    "shamir",
-    "cryptography",
-    "split"
-  ],
-  "author": "Alexander Stetsyuk <alexstets@gmail.com>",
-  "contributors": [
-    "Glenn Rempe <glenn@rempe.us>"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/grempe/secrets.js/issues"
-  },
-  "homepage": "https://github.com/grempe/secrets.js",
-  "typings": "./secrets.js.d.ts"
+	"name": "secret-sharing.js",
+	"version": "1.2.1",
+	"description": "Shamir's Secret Sharing Scheme for javascript - https://www.virtualcapitalofamerica.com",
+	"main": "secret-sharing.js",
+	"directories": {
+		"example": "examples"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"benchmark": "^2.1.4",
+		"grunt": "^1.0.2",
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-obfuscator": "^4.0.0",
+		"grunt-contrib-uglify": "^3.3.0",
+		"grunt-contrib-watch": "^1.0.0",
+		"grunt-eslint": "^20.1.0",
+		"jasmine": "^3.1.0",
+		"jasmine-core": "^3.1.0",
+		"jquery": "^3.3.1",
+		"randomorg-js": "^1.0.0",
+		"sjcl": "^1.0.7",
+		"standard": "^11.0.1"
+	},
+	"scripts": {
+    "dev": "grunt watch",
+		"test": "./node_modules/.bin/standard \"secrets.js\" && jasmine-node spec/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/virtualcapitalofamerica/secret-sharing.js.git"
+	},
+	"keywords": [
+		"javascript",
+		"js",
+		"ssss",
+		"shamir",
+		"secret",
+		"sharing",
+		"scheme",
+		"cryptography",
+		"split"
+	],
+	"author": "Alexander Stetsyuk <alexstets@gmail.com>",
+	"contributors": [
+		"Glenn Rempe <glenn@rempe.us>",
+		"Camilo Alexander Rodriguez Cuaran <camilo.rodriguez@virtualcapitalofamerica.com>"
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/virtualcapitalofamerica/secret-sharing.js/issues"
+	},
+	"homepage": "https://www.virtualcapitalofamerica.com/open-source/",
+	"typings": "./secrets.js.d.ts"
 }

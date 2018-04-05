@@ -1,30 +1,35 @@
 {
-  "name": "secrets.js-grempe",
-  "main": "secrets.js",
-  "version": "1.2.0",
-  "homepage": "https://github.com/grempe/secrets.js",
-  "authors": [
-    "Alexander Stetsyuk <alexstets@gmail.com>",
-    "Glenn Rempe <glenn@rempe.us>"
-  ],
-  "description": "Shamir's threshold secret sharing scheme for JavaScript.",
-  "keywords": [
-    "secret",
-    "sharing",
-    "shamir",
-    "cryptography",
-    "split"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "coverage"
-  ],
-  "moduleType": [
-    "amd",
-    "globals",
-    "node"
-  ]
+	"name": "secret-sharing.js",
+	"main": "secrets.js",
+	"version": "1.2.0",
+	"homepage": "https://github.com/virtualcapitalofamerica/secret-sharing.js",
+	"authors": [
+		"Alexander Stetsyuk <alexstets@gmail.com>",
+		"Glenn Rempe <glenn@rempe.us>",
+		"Camilo Alexander Rodriguez Cuaran <camilo.rodriguez@virtualcapitalofamerica.com>"
+	],
+	"description": "Shamir's Secret Sharing Scheme for javascript - https://www.virtualcapitalofamerica.com",
+	"keywords": [
+		"javascript",
+		"js",
+		"ssss",
+		"shamir",
+		"secret",
+		"sharing",
+		"scheme",
+		"cryptography",
+		"split"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"coverage"
+	],
+	"moduleType": [
+		"amd",
+		"globals",
+		"node"
+	]
 }
