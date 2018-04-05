@@ -34,6 +34,10 @@ The source code for this package is available on [Github](https://github.com/gre
 
 ## Server side
 
+First you need a library called [sjcl](https://github.com/bitwiseshiftleft/sjcl), you can download latest version from NPM:
+
+	npm install sjcl
+
 To use it in a Node.js application (Requires OpenSSL support compiled into Node):
 
 	var secrets = require('secret-sharing.js');
