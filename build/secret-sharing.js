@@ -500,7 +500,7 @@
 
       // Setup SJCL and start collecting entropy from mouse movements
       if (hasSJCL() && config.typeCSPRNG === 'browserSJCLRandom') {
-        sjcl.random = new (sjcl.prng(sjclParanoia))()
+        sjcl.random = new sjcl.prng()
 
         // In a Browser
         if (hasCryptoGetRandomValues()) {
