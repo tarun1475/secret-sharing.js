@@ -34,19 +34,13 @@ The source code for this package is available on [Github](https://github.com/gre
 
 ## Server side
 
-First you need a library called [sjcl](https://github.com/bitwiseshiftleft/sjcl), you can download latest version from NPM:
-
-	npm install sjcl
-
 To use it in a Node.js application (Requires OpenSSL support compiled into Node):
 
 	var secrets = require('secret-sharing.js');
 
-## Web side
+## Client side
 
-First you need a library called [sjcl](https://github.com/bitwiseshiftleft/sjcl), you can download latest version or use [rawgit](https://rawgit.com) to get a CDN version linking to [sjcl file](https://github.com/bitwiseshiftleft/sjcl/blob/master/sjcl.js)
-
-After sjcl declaration,to use it in the browser with the global 'secrets' defined, include *secret-sharing.js*, *secrets.min.js* or *secrets.ob.js* in your HTML.
+To use it in the browser with the global 'secrets' defined, include *secret-sharing.js*, *secrets.min.js* or *secrets.ob.js* in your HTML.
 
 	<script src="secrets.min.js"></script>
 
