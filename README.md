@@ -1,5 +1,5 @@
 # secret-sharing.js
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) 
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js.svg?branch=master)](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js)
 
 ## Table of contents 
 - [Shamir Secret Sharing Scheme](#shamit-secret-sharing-scheme)
