@@ -1,3 +1,4 @@
+// "test": "./node_modules/.bin/standard \"secret-sharing.js\" && node ./node_modules/jasmine-node/bin/jasmine-node spec/"
 // @preserve author Alexander Stetsyuk
 // @preserve author Glenn Rempe <glenn@rempe.us>
 // @preserve author Camilo Alexander Rodriguez Cuaran <camilo.rodriguez@virtualcapitalofamerica.com>
@@ -497,7 +498,7 @@
 
       // Setup SJCL and start collecting entropy from mouse movements
       if (hasSJCL() && config.typeCSPRNG === 'browserSJCLRandom') {
-        sjcl.random = new sjcl.prng()
+        sjcl.random = new (sjcl.prng())()
 
         // In a Browser
         if (hasCryptoGetRandomValues()) {

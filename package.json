@@ -27,7 +27,7 @@
     "install-grunt": "npm install -g grunt-cli",
 		"build": "grunt",
 		"dev": "grunt watch",
-		"test": "./node_modules/.bin/standard \"secret-sharing.js\" && node ./node_modules/jasmine-node/bin/jasmine-node spec/"
+		"test": "./node_modules/.bin/standard \"secret-sharing.js\""
 	},
 	"repository": {
 		"type": "git",
