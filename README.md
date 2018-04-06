@@ -1,5 +1,9 @@
 # secret-sharing.js
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js.svg?branch=master)](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js.svg?branch=master)](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js) 
+[![GitHub license](https://img.shields.io/github/license/virtualcapitalofamerica/secret-sharing.js.svg)](https://github.com/virtualcapitalofamerica/secret-sharing.js/blob/master/LICENSE)
+
+
+[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
 ## Table of contents 
 - [Shamir Secret Sharing Scheme](#shamit-secret-sharing-scheme)
@@ -12,7 +16,6 @@
 - [Possible future enhancements](#possible-future-enhancements)
 - [License](#license)
 
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
 ## Shamir Secret Sharing Scheme 
 This module is an implementation of [Shamir's secret sharing scheme](http://en.wikipedia.org/wiki/Shamir's_Secret_Sharing) in JavaScript, for Node.js and browsers with both Global variable and AMD module loading support.
