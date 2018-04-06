@@ -2,7 +2,7 @@
 	"name": "secret-sharing.js",
 	"version": "1.3.0",
 	"description": "Shamir's Secret Sharing Scheme for javascript - https://www.virtualcapitalofamerica.com",
-	"main": "secret-sharing.js",
+	"main": "dist/secret-sharing.js",
 	"directories": {
 		"example": "examples"
 	},
