@@ -1,7 +1,7 @@
 # secret-sharing.js
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Build Status](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js.svg?branch=master)](https://travis-ci.org/virtualcapitalofamerica/secret-sharing.js) 
-[![GitHub license](https://img.shields.io/github/license/virtualcapitalofamerica/secret-sharing.js.svg)](https://github.com/virtualcapitalofamerica/secret-sharing.js/blob/master/LICENSE)
-
+[![GitHub license](https://img.shields.io/github/license/virtualcapitalofamerica/secret-sharing.js.svg)](https://github.com/virtualcapitalofamerica/secret-sharing.js/blob/master/LICENSE) 
+[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/secret-sharing.js)
 
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
