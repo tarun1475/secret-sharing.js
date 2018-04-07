@@ -10,6 +10,18 @@
 - [Installation and usage](#installation-and-usage)
 - [Examples](#examples)
 - [API](#api)
+  - [Resume](#resume)
+  - [secrets.share()](#secretsshare-secret-numshares-threshold-padlength-)
+  - [secrets.combine()](#secretscombine-shares-)
+  - [secrets.newShare()](#secretsnewshare-id-shares-)
+  - [secrets.init()](#secretsinit-bits-rngtype-)
+  - [secrets.getConfig()](#secretsgetconfig)
+  - [secrets.extractShareComponents()](#secretsextractsharecomponents-share-)
+  - [secrets.setRNG()](#secretssetrng-functionbits--rngtype-)
+  - [secrets.seedRNG()](#secretsseedrng-data-estimatedentropy-source)
+  - [secrets.random()](#secretsrandom-bits-)
+  - [secrets.str2hex()](#secretsstr2hex-str-bytesperchar-)
+  - [secrets.hex2str()](#secretshex2str-str-bytesperchar-)
 - [Share format](#share-format)
 - [Note on security](#note-on-security)
 - [Development and Testing](#development-and-testing)
@@ -108,18 +120,18 @@ There are some additional examples of simple usage in the browser, Node.js, and 
 
 ## API
 
-* secrets.share()
-* secrets.combine()
-* secrets.newShare()
-* secrets.init()
+### Resume
+* secrets.share(secret, numShares, threshold, [padLength])
+* secrets.combine(shares)
+* secrets.newShare(id, shares)
+* secrets.init([bits, rngType])
 * secrets.getConfig()
-* secrets.extractShareComponents()
-* secrets.setRNG()
-* secrets.seedRNG()
-* secrets.random()
-* secrets.str2hex()
-* secrets.hex2str()
-
+* secrets.extractShareComponents(share)
+* secrets.setRNG(function(bits){} | rngType)
+* secrets.seedRNG([data, estimatedEntropy, source])
+* secrets.random(bits)
+* secrets.str2hex(str, [bytesPerChar])
+* secrets.hex2str(str, [bytesPerChar])
 
 #### secrets.share( secret, numShares, threshold, [padLength] )
 Divide a `secret` expressed in hexadecimal form into `numShares` number of shares, requiring that `threshold` number of shares be present for reconstructing the `secret`;
