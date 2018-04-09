@@ -10,6 +10,18 @@
 - [Installation and usage](#installation-and-usage)
 - [Examples](#examples)
 - [API](#api)
+  - [Resume](#resume)
+  - [secrets.share()](#secretsshare-secret-numshares-threshold-padlength-)
+  - [secrets.combine()](#secretscombine-shares-)
+  - [secrets.newShare()](#secretsnewshare-id-shares-)
+  - [secrets.init()](#secretsinit-bits-rngtype-)
+  - [secrets.getConfig()](#secretsgetconfig)
+  - [secrets.extractShareComponents()](#secretsextractsharecomponents-share-)
+  - [secrets.setRNG()](#secretssetrng-functionbits--rngtype-)
+  - [secrets.seedRNG()](#secretsseedrng-data-estimatedentropy-source)
+  - [secrets.random()](#secretsrandom-bits-)
+  - [secrets.str2hex()](#secretsstr2hex-str-bytesperchar-)
+  - [secrets.hex2str()](#secretshex2str-str-bytesperchar-)
 - [Share format](#share-format)
 - [Note on security](#note-on-security)
 - [Development and Testing](#development-and-testing)
@@ -27,11 +39,15 @@ This is a fork of the original excellent code created by `amper5and` on Github. 
 ## Installation and usage
 This fork of secret-sharing.js is available from [bower.io](http://bower.io/search/?q=secret-sharing.js) and [www.npmjs.com](https://www.npmjs.com/package/secret-sharing.js). Install using
 
+```bash
 	npm install secret-sharing.js
+```
 
 or
 
+```bash
 	bower install secret-sharing.js
+```
 
 The source code for this package is available on [Github](https://github.com/grempe/secret-sharing.js).
 
@@ -39,20 +55,24 @@ The source code for this package is available on [Github](https://github.com/gre
 
 To use it in a Node.js application (Requires OpenSSL support compiled into Node):
 
+```js
 	var secrets = require('secret-sharing.js');
+```
 
 ### Client side
 
 To use it in the browser with the global 'secrets' defined, include *secret-sharing.js*, *secrets.min.js* or *secrets.ob.js* in your HTML.
 
+```html
 	<script src="secrets.min.js"></script>
+```
 
 You can also use it in the browser with an AMD module loading tool like [require.js](http://www.requirejs.org/). See the AMD loading example in the `examples` dir.
 
 ## Examples:
 
 Divide a 512-bit key, expressed in hexadecimal form, into 10 shares, requiring that any 5 of them are necessary to reconstruct the original key:
-
+```js
 	// generate a 512-bit key
 	var key = secrets.random(512); // => key is a hex string
 
@@ -78,10 +98,11 @@ Divide a 512-bit key, expressed in hexadecimal form, into 10 shares, requiring t
 	// reconstruct using 4 original shares and the new share:
 	comb = secrets.combine( shares.slice(1,5).concat(newShare) );
 	console.log(comb === key); // => true
-
+```
 
 Divide a password containing a mix of numbers, letters, and other characters, requiring that any 3 shares must be present to reconstruct the original password:
 
+```js
 	var pw = '<<PassWord123>>';
 
 	// convert the text into a hex string
@@ -103,23 +124,24 @@ Divide a password containing a mix of numbers, letters, and other characters, re
 	//convert back to UTF string:
 	comb = secrets.hex2str(comb);
 	console.log( comb === pw  ); // => true
+```
 
 There are some additional examples of simple usage in the browser, Node.js, and AMD loading (require.js) in the `examples` folder.
 
 ## API
 
-* secrets.share()
-* secrets.combine()
-* secrets.newShare()
-* secrets.init()
-* secrets.getConfig()
-* secrets.extractShareComponents()
-* secrets.setRNG()
-* secrets.seedRNG()
-* secrets.random()
-* secrets.str2hex()
-* secrets.hex2str()
-
+### Resume
+- [secrets.share()](#secretsshare-secret-numshares-threshold-padlength-)
+- [secrets.combine()](#secretscombine-shares-)
+- [secrets.newShare()](#secretsnewshare-id-shares-)
+- [secrets.init()](#secretsinit-bits-rngtype-)
+- [secrets.getConfig()](#secretsgetconfig)
+- [secrets.extractShareComponents()](#secretsextractsharecomponents-share-)
+- [secrets.setRNG()](#secretssetrng-functionbits--rngtype-)
+- [secrets.seedRNG()](#secretsseedrng-data-estimatedentropy-source)
+- [secrets.random()](#secretsrandom-bits-)
+- [secrets.str2hex()](#secretsstr2hex-str-bytesperchar-)
+- [secrets.hex2str()](#secretshex2str-str-bytesperchar-)
 
 #### secrets.share( secret, numShares, threshold, [padLength] )
 Divide a `secret` expressed in hexadecimal form into `numShares` number of shares, requiring that `threshold` number of shares be present for reconstructing the `secret`;
@@ -225,6 +247,7 @@ Shamir's secret sharing scheme is "information-theoretically secure" and "perfec
 
 When `secrets.share()` is called with a `padLength`, the `secret` is zero-padded so that it's length is a multiple of the padLength. The second example above can be modified to use 1024-bit zero-padding, producing longer shares:
 
+```js
 	var pw = '<<PassWord123>>';
 
 	// convert the text into a hex string
@@ -240,6 +263,7 @@ When `secrets.share()` is called with a `padLength`, the `secret` is zero-padded
 	comb = secrets.hex2str(comb);
 
 	console.log( comb === pw  ); // => true
+```
 
 ## Development and Testing
 
